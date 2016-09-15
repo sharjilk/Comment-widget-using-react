@@ -31,7 +31,7 @@ class Commentsingle extends React.Component{
 			        <small className="pull-right text-muted">
 			        <span className="glyphicon glyphicon-time"></span>{this.props.comments.commenttime}</small><br/>
 			        <p>{this.props.comments.commenttext}</p>
-			        { this.state.showForm ? <Replyform /> : null }
+			        { this.state.showForm ? <Replyform commentId={this.props.comments} /> : null }
 			        <div className="btn-group btn-group-xs">
 			        	<button onClick={this.showReplyForm.bind(this)} className="btn btn-default">{this.state.replyText}</button>
 			        </div>

@@ -12,7 +12,7 @@ class Replyform extends React.Component{
 		this.state = {
 			userName: '',
 			userComment: '',
-			applyReply : false
+			commentsDataArrayReplyState: []
 		};
 	}
 
@@ -49,6 +49,10 @@ class Replyform extends React.Component{
 
 		commentsDataArrayReply.push(dataObject);
 
+		this.setState({
+			commentsDataArrayReplyState : dataObject
+		})
+
 		if(this.state.applyReply == false){
 			this.setState({
 				applyReply : true
@@ -58,6 +62,7 @@ class Replyform extends React.Component{
 				applyReply : false
 			})
 		}
+
 	}
 
 	render(){
@@ -65,9 +70,7 @@ class Replyform extends React.Component{
 					<div className="col-lg-6">
 		    		<div className="col-lg-12">
 
-		    			{commentsDataArrayReply.map((commentitem)=>{
-				        	return	<Commentsinglereply comments={commentitem} key={commentitem.id}/> 
-				        })}
+		    			<Commentsinglereply comments={this.state.commentsDataArrayReplyState} />
 
 		    			<form className="form-horizontal">
 					    	<h5>Your Reply...</h5>
