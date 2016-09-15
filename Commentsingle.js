@@ -14,13 +14,7 @@ class Commentsingle extends React.Component{
 	showReplyForm(){
 		if(this.state.showForm == false){
 			this.setState({
-				showForm : true,
-				replyText : "Close"
-			})
-		}else{
-			this.setState({
-				showForm : false,
-				replyText : "Reply"
+				showForm : true
 			})
 		}
 	}
@@ -33,7 +27,7 @@ class Commentsingle extends React.Component{
 			        <p>{this.props.comments.commenttext}</p>
 			        { this.state.showForm ? <Replyform commentId={this.props.comments} /> : null }
 			        <div className="btn-group btn-group-xs">
-			        	<button onClick={this.showReplyForm.bind(this)} className="btn btn-default">{this.state.replyText}</button>
+			        	{ this.state.showForm ? null : <button onClick={this.showReplyForm.bind(this)} className="btn btn-default">{this.state.replyText}</button> }
 			        </div>
 			        <hr/> 
 		        </li>

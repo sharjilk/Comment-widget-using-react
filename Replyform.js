@@ -28,7 +28,7 @@ class Replyform extends React.Component{
 		});
 	}
 
-	addCommentReply(e){
+	addCommentReply(e, idVar){
 		e.preventDefault();
 		initTemp = initTemp + 1;
 		var currDate, currMonth, currYear, currHour, currMin, currSec, totaltime = "";
@@ -50,7 +50,7 @@ class Replyform extends React.Component{
 		commentsDataArrayReply.push(dataObject);
 
 		this.setState({
-			commentsDataArrayReplyState : dataObject
+			commentsDataArrayReplyState : commentsDataArrayReply
 		})
 
 		if(this.state.applyReply == false){
@@ -63,6 +63,9 @@ class Replyform extends React.Component{
 			})
 		}
 
+		document.getElementById("userNameReply").value = "";
+		document.getElementById("userCommentReply").value = "";
+
 	}
 
 	render(){
@@ -70,19 +73,23 @@ class Replyform extends React.Component{
 					<div className="col-lg-6">
 		    		<div className="col-lg-12">
 
-		    			<Commentsinglereply comments={this.state.commentsDataArrayReplyState} />
+			    		{this.state.commentsDataArrayReplyState.map((commentitem)=>{
+				        	return	<Commentsinglereply comments={commentitem} key={commentitem.id}/> 
+				        })}
+
+		    			
 
 		    			<form className="form-horizontal">
 					    	<h5>Your Reply...</h5>
 						    <div className="form-group col-lg-12">
-						    	<input type="text" name="userNameReply" className="form-control" placeholder="Your Name" onChange={this.nameChangeReply.bind(this)} />
+						    	<input type="text" id="userNameReply" name="userNameReply" className="form-control" placeholder="Your Name" onChange={this.nameChangeReply.bind(this)} />
 						    </div>
 						    <div className="form-group col-lg-12">
-						        <textarea name="userCommentReply" className="form-control" placeholder="Write your reply here..." onChange={this.commentChangeReply.bind(this)} ></textarea>
+						        <textarea id="userCommentReply" name="userCommentReply" className="form-control" placeholder="Write your reply here..." onChange={this.commentChangeReply.bind(this)} ></textarea>
 						    </div>
 						    <div className="form-group col-lg-12">
 						    	<span className="input-group-btn">     
-						            <button onClick={this.addCommentReply.bind(this)} className="btn btn-primary btn-sm"><span className="glyphicon glyphicon-comment"></span> Post Reply</button>
+						            <button id={this.props.commentId.name} onClick={this.addCommentReply.bind(this)} className="btn btn-primary btn-sm"><span className="glyphicon glyphicon-comment"></span> Post Reply</button>
 						        </span>
 						    </div>
 					    </form>

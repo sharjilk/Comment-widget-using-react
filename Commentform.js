@@ -48,6 +48,10 @@ class Commentform extends React.Component{
 
 		commentsDataArray.push(dataObject);
 		ReactDOM.render(<Commentform comments={commentsDataArray} />, document.getElementById('MainApp'));
+		
+		document.getElementById("userName").value = "";
+		document.getElementById("userComment").value = "";
+
 	}
 
 	render(){
@@ -59,10 +63,10 @@ class Commentform extends React.Component{
 					    		<form className="form-horizontal">
 							    	<h4>Join the Discussion...</h4>
 								    <div className="form-group col-lg-12">
-								    	<input type="text" name="userName" className="form-control" placeholder="Your Name" onChange={this.nameChange.bind(this)} />
+								    	<input type="text" id="userName" name="userName" className="form-control" placeholder="Your Name" onChange={this.nameChange.bind(this)} />
 								    </div>
 								    <div className="form-group col-lg-12">
-								        <textarea name="userComment" className="form-control" placeholder="Write your comment here..." onChange={this.commentChange.bind(this)} ></textarea>
+								        <textarea id="userComment" name="userComment" className="form-control" placeholder="Write your comment here..." onChange={this.commentChange.bind(this)} ></textarea>
 								    </div>
 								    <div className="form-group col-lg-12">
 								    	<span className="input-group-btn">     
